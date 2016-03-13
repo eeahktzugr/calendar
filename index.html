@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <script src="calendar.js" type="text/javascript" ></script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+
+
+  </head>
+  <body>
+
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+
+
+      <div class="jumbotron">
+        <h1 id="title"></h1>
+          <h3 style="float:right; color:white"id="Date"></h3>
+
+      </div>
+
+      <div class="container"  >
+
+
+      <div id="free"></div>
+    <pre id="booked"></pre>
+      <h2>Seuraavat varaukset</h2>
+      <pre id="bookings"></pre>
+    </div>
+
+    <footer class="footer">
+      <div>
+      </div>
+      <div">
+    <img src="logo.png"   id="logo">
+  </div>
+  </footer>
+  </body>
+</html>
