@@ -7,8 +7,8 @@ session_start();
 //require_once('../backend/libs/config.php');
 //require_once('../backend/libs/cal/corecal.php');
 define('SITE_ROOT','http://localhost/');
-$_SESSION['fname'] = 'Neea';
-$_SESSION['lname'] = 'Planting';
+$_SESSION['fname'] = 'firstname';
+$_SESSION['lname'] = 'lastname';
 
 
 /*
@@ -107,10 +107,10 @@ JSON;
 function getAccessToken() {
   $tokenURL = 'https://accounts.google.com/o/oauth2/token';
   $postData = array(
-    'client_secret' => 'Oo153YgBi9GXvmd4QljSpFr0', #You need to fill these in to match your site.
+    'client_secret' => 'secret', #You need to fill these in to match your site.
     'grant_type' => 'refresh_token',
-    'refresh_token' => '1/WCrSpKqQm_d5AT4gCE4uKg5O-YT4NaH-CherijVEp7VIgOrJDtdun6zK6XiATCKT',
-    'client_id' => '171438402429-hmk2c1nm43o36gsisvu3hg3ciunkfjj6.apps.googleusercontent.com' #You need to fill these in to match your site.
+    'refresh_token' => 'token',
+    'client_id' => 'your_id.apps.googleusercontent.com' #You need to fill these in to match your site.
   );
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $tokenURL);
@@ -155,16 +155,16 @@ if (isset($_GET['cal'])) {
 
 
 $courts = array(
-  'court1' => array('cid' => 'court1', 'name' => 'Court 1', 'id' => 'vauraus.fi_prcgt3dlstb69aashsg8589mpo@group.calendar.google.com'),
-  'court2' => array('cid' => 'court2', 'name' => 'Court 2', 'id' => 'vauraus.fi_vssh5fdb4n643c4fvu224u85l8@group.calendar.google.com'),
-  'court3' => array('cid' => 'court3', 'name' => 'Court 3', 'id' => 'vauraus.fi_l9qj4r06c17th4jqit04gv7ncg@group.calendar.google.com'),
-  'court4' => array('cid' => 'court4', 'name' => 'Court 4', 'id' => 'vauraus.fi_9a1avabhcrnv5leu3l1q3honpo@group.calendar.google.com'),
-  'court5' => array('cid' => 'court5', 'name' => 'Court 5', 'id' => 'vauraus.fi_u1klp5j7cs9hflgv5oqmajp7r0@group.calendar.google.com'),
-  'court6' => array('cid' => 'court6', 'name' => 'Court 6', 'id' => 'vauraus.fi_sohlp99ml6jmrg66kubp5pfsfg@group.calendar.google.com'),
-  'court7' => array('cid' => 'court6', 'name' => 'Court 6', 'id' => 'vauraus.fi_bko3756vcvhe4p2t56p79gh6e0@group.calendar.google.com'),
+  'court1' => array('cid' => 'court1', 'name' => 'Court 1', 'id' => 'cal_id'),
+  'court2' => array('cid' => 'court2', 'name' => 'Court 2', 'id' => 'cal_id'),
+  'court3' => array('cid' => 'court3', 'name' => 'Court 3', 'id' => 'cal_id'),
+  'court4' => array('cid' => 'court4', 'name' => 'Court 4', 'id' => 'cal_id'),
+  'court5' => array('cid' => 'court5', 'name' => 'Court 5', 'id' => 'cal_id'),
+  'court6' => array('cid' => 'court6', 'name' => 'Court 6', 'id' => 'cal_id'),
+  'court7' => array('cid' => 'court7', 'name' => 'Court 7', 'id' => 'cal_id'),
 );
 
-$APIKEY = 'AIzaSyCQA6uwAV621YvcWjB4jZl6daXucjisizE';
+$APIKEY = 'api_key';
 
 
 $message = "";
