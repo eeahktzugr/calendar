@@ -4,23 +4,15 @@
  */
 session_start();
 
-//require_once('../backend/libs/config.php');
-//require_once('../backend/libs/cal/corecal.php');
 define('SITE_ROOT','http://localhost/');
 $_SESSION['fname'] = 'firtsname';
 $_SESSION['lname'] = 'lastname';
 
 
-/*
- * Core Calendar Functions (contents of the corecal.php file above)
- */
-
 function sendPostRequest($postargs, $token, $cal, $data) {
   global $APIKEY;
   $request = 'https://www.googleapis.com/calendar/v3/calendars/' . $cal . '/events?pp=1&key=' . $APIKEY ;
 
-  //$auth = json_decode($_SESSION['oauth_access_token'],true);
-  //var_dump($auth);
 
   $session = curl_init($request);
 
@@ -37,23 +29,13 @@ function sendPostRequest($postargs, $token, $cal, $data) {
 
   $response = curl_exec($session);
 
-  //echo '<pre>';
-  //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
-  //echo '</pre>';
-
   curl_close($session);
   return $response;
 }
 
 function sendGetRequest($token, $request) {
   global $APIKEY;
-  //$request = 'https://www.googleapis.com/calendar/v3/calendars/' . $CAL . '/events?pp=1&key=' . $APIKEY;
-  //$auth = json_decode($_SESSION['oauth_access_token'],true);
-  //var_dump($auth);
-
-
-//  print_r($request);
-
+ 
   $session = curl_init($request);
 
   // Tell curl to use HTTP POST
@@ -65,9 +47,6 @@ function sendGetRequest($token, $request) {
   curl_setopt($session, CURLOPT_HTTPHEADER, array('Authorization:  Bearer ' . $token));
 
   $response = curl_exec($session);
-
-
-  //var_dump(curl_getinfo($session, CURLINFO_HEADER_OUT));
 
 
   curl_close($session);
@@ -117,7 +96,6 @@ function getAccessToken() {
 
   $tokenReturn = curl_exec($ch);
   $token = json_decode($tokenReturn);
-  //var_dump($tokenReturn);
   $accessToken = $token->access_token;
   return $accessToken;
 }
@@ -139,10 +117,6 @@ function isTimeBooked($date, $starttime, $endtime, $cal) {
   }
 }
 
-
-/*
- * End Core Calendar Functions (contents of the corecal.php file above)
- */
 
 $thecal = 'court1';
 if (isset($_GET['cal'])) {
@@ -167,25 +141,9 @@ $APIKEY = 'api_key';
 $message = "";
 
 
-
-  /*
-   * Check to see if everything was filled out properly.
-   */
-  //echo 'start submit' . date('Hms', strtotime($_POST['starttime'] . ':00'));
-  //echo 'start default' . date('Hms', strtotime($courts[$_POST['calendar']]['starttime']));
-  //echo 'end submit' . date('Hms', strtotime($_POST['endtime'] . ':00'));
-  //echo 'end default' . date('Hms', strtotime($courts[$_POST['calendar']]['endtime']));
-
-
-
-
-
   $postargs = createPostArgsJSON($_POST['date'],$_POST['starttime'],$_POST['endtime'],$_POST['title']);
 
   $token = getAccessToken();
   $result = sendPostRequest($postargs, $token, $courts[$_POST['cal']]['id']);
-  //print_r($result);
-
-
 
 ?>
